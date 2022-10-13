@@ -1,19 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:jovial_svg/jovial_svg.dart';
 import 'package:misc_utils/ui-common/shimmer_image.dart';
+
+import '../di.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageUrl;
   final BoxFit boxFit;
-  final CacheManager? cacheManager;
 
   const CustomNetworkImage({
     Key? key,
     required this.imageUrl,
     this.boxFit = BoxFit.cover,
-    this.cacheManager,
   }) : super(key: key);
 
   @override
@@ -28,7 +27,7 @@ class CustomNetworkImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: adaptedUrl,
       width: double.infinity,
-      cacheManager: cacheManager,
+      cacheManager: cacheManager(),
       placeholder: (context, s) => const ShimmerImage(),
       fit: boxFit,
       errorWidget: (context, url, error) {
