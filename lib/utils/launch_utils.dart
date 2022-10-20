@@ -1,5 +1,9 @@
 import 'package:url_launcher/url_launcher.dart';
 
+/// !!!!
+/// make sure add for example on Android in Android Manifest intents
+/// !!!!
+
 launchUrlGeoSender(String lat, String lng) async {
   Uri link = Uri.parse('https://www.google.com/maps/search/?api=1&query=$lat,$lng');
   await canLaunchUrl(link) ? await launchUrl(link) : throw 'Could not launchUrl $link';
